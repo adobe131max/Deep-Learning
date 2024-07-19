@@ -22,7 +22,7 @@ class LeNet(nn.Module):
         x = F.relu(self.conv2(x))
         x = F.max_pool2d(x, 2)
         x = x.view(-1, 16*4*4)      # 展平
-        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc1(x))     # 如果你认真看了，可能会有疑惑：fc1不是一个对象吗？fc1()调用的是__call__方法，实际上就是forward方法
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
         return x
