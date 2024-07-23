@@ -11,3 +11,5 @@ $$
 $$
 max(0,x)
 $$
+
+## Cross Entropy
