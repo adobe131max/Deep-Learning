@@ -21,7 +21,7 @@ class LeNet(nn.Module):
         x = F.max_pool2d(x, 2)
         x = F.relu(self.conv2(x))
         x = F.max_pool2d(x, 2)
-        x = x.view(-1, 16*4*4)      # 展平
+        x = x.view(-1, 16*4*4)      # 展平, -1 自动推导为 batch size
         x = F.relu(self.fc1(x))     # 如果你认真看了，可能会有疑惑：fc1不是一个对象吗？fc1()调用的是__call__方法，实际上就是forward方法
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
@@ -47,7 +47,7 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # 训练模型
 def train(epoch):
-    model.train()
+    model.train()   # 进入训练模式
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
@@ -60,10 +60,10 @@ def train(epoch):
 
 # 测试模型
 def test():
-    model.eval()
+    model.eval()    # 进入评估模式 Dropout 层会停止随机丢弃神经元。BatchNorm 层会使用训练期间计算的均值和方差，而不是批量数据的均值和方差。
     test_loss = 0
     correct = 0
-    with torch.no_grad():
+    with torch.no_grad():   # 评估阶段不计算梯度
         for data, target in test_loader:
             data, target = data.to(device), target.to(device)
             output = model(data)
