@@ -16,14 +16,14 @@ print(torch.arange(1,10))       # [start, end)
 
 # 2. tensor运算
 
-print(f'add:\n{x.add(1)}')     # 生成一个新的tensor
+print(f'add:\n{x.add(1)}')          # 生成一个新的tensor
 print(x)
-print(f'add_:\n{x.add_(1)}')    # 带_的直接在原tensor上改变
+print(f'add_:\n{x.add_(1)}')        # 带_的直接在原tensor上改变
 print(x)
-print(f'view:\n{x.view(-1)}')   # 改变形状
-print(f'view:\n{x.view(-1, 6)}')   # 改变形状
+print(f'view:\n{x.view(-1)}')       # 改变形状
+print(f'view:\n{x.view(-1, 6)}')    # 改变形状
 print(x)
-print(f'zero_:\n{x.zero_()}')    # 置 0
+print(f'zero_:\n{x.zero_()}')       # 置 0
 
 x = torch.Tensor([[1,2,3],[4,5,6]])
 y = torch.tensor([[-1,-2,-3],[-4,-5,-6]])
@@ -38,3 +38,6 @@ print(x+y)
 print(x)
 x+=y        # 直接改变原tensor
 print(x)
+
+x = torch.tensor([1])
+print(x.item())     # tensor to num
