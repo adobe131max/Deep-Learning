@@ -2,6 +2,8 @@
 
 ## import
 
+Python中导入模块时，实际上会把被导入的模块执行一遍
+
 1. 导入模块
 
 ``` py
@@ -18,3 +20,11 @@ torch.utils.data.DataLoader是类
 ``` py
 from torch.utils.data import DataLoader
 ```
+
+## type
+
+### list
+
+### tuple
+
+### dict
