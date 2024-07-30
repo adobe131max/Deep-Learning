@@ -15,5 +15,7 @@ Deep-Learning/
 │
 ├── data/               # 数据集
 │
-└── docs/               # 笔记
+├── docs/               # 笔记
+|
+└── images/             # 图片
 ```

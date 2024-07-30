@@ -8,6 +8,9 @@ print(f'当前工作目录: {cwd}')
 
 # os.path.join 用于智能地将一个或多个路径组件连接起来。根据不同操作系统的路径分隔符来处理路径
 print(os.path.join(cwd, r'a\b\c'))
+file_path = os.path.join(cwd, './code/python/path.py')
+print(file_path)
+assert os.path.exists(file_path), './code/python/path.py not found.'    # 可以识别/和\
 
 # 获取脚本文件的完整路径
 file_path = os.path.abspath(__file__)
@@ -26,5 +29,4 @@ print(os.listdir(cwd))
 
 # 路径都是相对于工作目录
 assert os.path.exists('./README.md'), './README.md not found.'
-assert os.path.exists('./docs/Mathematics.md'), './docs/Mathematics.md not found.'
-assert os.path.exists('.\docs\Mathematics.md'), './docs/Mathematics.md not found.'
+assert os.path.exists('./code/python/path.py'), './code/python/path.py not found.'
