@@ -1,5 +1,4 @@
 import numpy as np
-import torch
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
@@ -18,8 +17,11 @@ transform = transforms.Compose([
 ])
 
 # 加载MNIST数据集
+# transform 进行数据增强时，通常不会直接增加数据集的大小。这是因为 transform 的工作方式是在数据加载时实时对每个数据样本进行变换
 train_dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
+print(f'train dataset len: {len(train_dataset)}')
+print(f'test dataset len: {len(test_dataset)}')
 
 # 创建数据加载器
 train_loader = DataLoader(dataset=train_dataset, batch_size=64, shuffle=True)
