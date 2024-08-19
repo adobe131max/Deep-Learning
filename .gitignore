@@ -1,3 +1,5 @@
 *.exe
 
 /data/
+
+__pycache__/

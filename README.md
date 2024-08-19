@@ -2,6 +2,20 @@
 
 深度学习入门
 
+## 学习路线
+
+先看基础理论 → 再看经典论文 → 上手PyTorch
+
+前期不要浪费时间在写代码复现老模型上，没有任何意义，学习其中的思想就行
+
+**学习资料：**
+
+1. 理论基础：[李宏毅深度学习](https://www.bilibili.com/video/BV1J94y1f7u5)
+2. 代码基础：
+   1. PyTorch（）：TODO
+   2. 模型详解：[霹雳吧啦Wz](https://www.bilibili.com/video/BV14E411H7Uw)
+3. 论文基础：[李沐论文精读](https://www.bilibili.com/video/BV1pu411o7BE)
+
 ## 文件结构
 
 ``` plain
