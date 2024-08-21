@@ -6,13 +6,14 @@ x = torch.Tensor([[1,2,3],[4,5,6]]) # 指定tensor内容
 print(x)
 print(x.dtype)                  # tensor中元素的类型
 
-print(torch.Tensor(2,3))        # 创建tensor，内容未初始化
-print(torch.IntTensor(2,3))     # 指定类型的tensor
-print(torch.zeros(2,3))         # 全 0
-print(torch.ones(2,3))          # 全 1
-print(torch.randn(2,3))         # 浮点型随机数 - 均值为0，方差为1，服从b标准正态分布
-print(torch.rand(2,3))          # 浮点型随机数 - [0, 1) 均匀分布
-print(torch.arange(1,10))       # [start, end)
+print(torch.Tensor(2,3))            # 创建tensor，内容未初始化
+print(torch.IntTensor(2,3))         # 指定类型的tensor
+print(torch.randint(0, 10, (3, 4))) # [low high) shape
+print(torch.zeros(2,3))             # 全 0
+print(torch.ones(2,3))              # 全 1
+print(torch.randn(2,3))             # 浮点型随机数 - 均值为0，方差为1，服从b标准正态分布
+print(torch.rand(2,3))              # 浮点型随机数 - [0, 1) 均匀分布
+print(torch.arange(1,10))           # [start, end)
 
 # 2. tensor运算
 
