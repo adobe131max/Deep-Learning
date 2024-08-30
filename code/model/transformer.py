@@ -63,9 +63,10 @@ model = TransformerModel(input_dim, output_dim)
 # 每个token用一个整数表示，每列是一条完整输入
 src = torch.randint(0, input_dim, (src_seq_len, 10))    # (source sequence length, batch size)
 tgt = torch.randint(0, output_dim, (tgt_seq_len, 10))   # (target sequence length, batch size)
+print(src.shape)
 print(src)
-print(src[:, 0])
-print(src[:][0])
+print(src[:, 0])    # 所有行的第一个元素，也就是第一列
+print(src[:][0])    # 所有行，再取第一行，也就是第一行
 
 # 创建mask
 src_mask = model.transformer.generate_square_subsequent_mask(src_seq_len)

@@ -1,0 +1,6 @@
+email:
+  server: smtp.qq.com
+  port: 587
+  from: 
+  to: 
+  password: 

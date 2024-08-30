@@ -1,5 +1,9 @@
 *.exe
+*.log
 
 /data/
-
 __pycache__/
+runs/
+
+# 包含密码，只提供模板
+config.yaml

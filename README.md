@@ -12,8 +12,8 @@
 
 1. 理论基础：[李宏毅深度学习](https://www.bilibili.com/video/BV1J94y1f7u5)
 2. 代码基础：
-   1. PyTorch（）：TODO
-   2. 模型详解：[霹雳吧啦Wz](https://www.bilibili.com/video/BV14E411H7Uw)
+   1. PyTorch：[PyTorch中文文档](https://pytorch.apachecn.org)
+   2. 模型详解 + 实现：[霹雳吧啦Wz](https://www.bilibili.com/video/BV14E411H7Uw)
 3. 论文基础：[李沐论文精读](https://www.bilibili.com/video/BV1pu411o7BE)
 
 ## 文件结构
