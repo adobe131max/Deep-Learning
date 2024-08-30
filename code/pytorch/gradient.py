@@ -20,7 +20,7 @@ y = torch.tensor(2.0, requires_grad=True)
 z = x**2 + y**3
 
 # 计算 z 对 x 和 y 的梯度
-dz_dx, dz_dy = torch.autograd.grad(z, [x, y], create_graph=True)
+dz_dx, dz_dy = torch.autograd.grad(z, [x, y])
 
 # 打印结果
 print("dz/dx:", dz_dx)
