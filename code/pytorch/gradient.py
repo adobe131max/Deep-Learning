@@ -11,6 +11,12 @@ dy2_dx2 = torch.autograd.grad(dy_dx, x)
 print(dy_dx)                                            # 输出是tuple
 print(dy2_dx2)
 
+# 反向传播求所有 requires_grad=True 参数梯度
+
+z = 2.0 * x ** 2
+z.backward()
+print(x.grad)
+
 # 多个张量的梯度
 
 x = torch.tensor(1.0, requires_grad=True)
