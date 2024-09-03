@@ -12,6 +12,7 @@ print(f'当前工作目录: {cwd}')
 
 # os.path.join 用于智能地将一个或多个路径组件连接起来。根据不同操作系统的路径分隔符来处理路径
 print(os.path.join(cwd, r'a\b\c'))
+print(os.path.join(cwd, 'a', 'b', 'c'))
 file_path = os.path.join(cwd, './code/python/path.py')
 print(file_path)
 assert os.path.exists(file_path), './code/python/path.py not found.'    # 可以识别/和\
