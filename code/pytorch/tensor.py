@@ -4,6 +4,8 @@ import torch
 
 x = torch.Tensor([[1,2,3],[4,5,6]]) # 指定tensor内容
 print(x)
+print(type(x))                  # torch.Tensor
+print(x.shape)
 print(x.dtype)                  # tensor中元素的类型
 
 print(torch.Tensor(2,3))            # 创建tensor，内容未初始化

@@ -1,24 +1,26 @@
 # Python
 
-## import
+## Module & Package
+
+**Module（模块）**：一个py文件就是一个模块  
+**Package（包）**：一个包含 “init.py” 文件的目录被称为包
+
+### import
 
 Python中导入模块时，实际上会把被导入的模块执行一遍
 
-1. 导入模块
-
 ``` py
-import torch            # torch是模块
-import torch.nn         # torch.nn也是模块
-import torch.nn as nn   # 简化，nn也是模块
-```
+import module_name                          # 导入模块
+import package_name.module_name             # 导入包中的模块
+import package_name.module_name as name     # 别名简化
 
-2. 直接导入模块/函数/变量/类，简化命名空间
+# import 包/模块
+# 不可以直接 import module_name.function_name/class_name/variable_name
+# 特定对象的导入方式：
+from module_name import function_name/class_name/variable_name
 
-torch.utils.data是模块  
-torch.utils.data.DataLoader是类
-
-``` py
-from torch.utils.data import DataLoader
+# 在包内部的模块中，可以使用相对路径来导入：
+from .module1 import function_name
 ```
 
 import 自己编写的脚本时在当前脚本所在路径下搜索，import 的脚本需要在同一目录或子目录中，否则需要添加搜索路径

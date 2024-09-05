@@ -6,7 +6,7 @@ image_path = "./images/1.png"
 # cv2.IMREAD_COLOR      以彩色模式读取图像，忽略图像的透明度通道
 # cv2.IMREAD_GRAYSCALE  以灰度模式读取图像
 # cv2.IMREAD_UNCHANGED  以原始模式读取图像，包括透明度通道（如果有）
-image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+image = cv2.imread(image_path, cv2.IMREAD_COLOR)    # 路径不能有中文，否则image为None
 
 assert image is not None, f"failed to read image: {image_path}"
 height, width, channels = image.shape
