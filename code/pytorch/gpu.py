@@ -18,5 +18,15 @@ print(Y)
 print(Z)  # 需要在同一张GPU上才能运算
 print(Z.device)
 
-print(X.to('cpu').device)   # 复制一个，不改变原tensor
+Xc = X.cpu()            # 复制一个，不改变原tensor
+Xcpu = X.to('cpu')      # 复制一个，不改变原tensor
+Xgpu = Xcpu.to('cuda')
 print(X.device)
+print(Xc.device)
+print(Xcpu.device)
+print(Xgpu.device)
+
+print(id(X))
+print(id(Xc))
+print(id(Xcpu))
+print(id(Xgpu))
