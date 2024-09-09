@@ -55,7 +55,7 @@ for epoch in range(0, 10):
     for update in range(1):
         # output = model(input)             # 正向传播
         # loss = criterion(output, target)  # 计算 loss
-        optimizer.zero_grad()               # 清楚上一轮的梯度
+        optimizer.zero_grad()               # 清除上一轮的梯度
         # loss.backward()                   # 反向传播计算梯度
         optimizer.step()                    # 调整参数
     scheduler.step()                        # 更新 lr

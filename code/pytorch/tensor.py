@@ -6,6 +6,7 @@ x = torch.Tensor([[1,2,3],[4,5,6]]) # 指定tensor内容
 print(x)
 print(type(x))                  # torch.Tensor
 print(x.shape)
+print(x.size())                 # .shape = .size()
 print(x.dtype)                  # tensor中元素的类型
 
 print(torch.Tensor(2,3))            # 创建tensor，内容未初始化
@@ -28,14 +29,20 @@ print(f'view:\n{x.view(-1, 6)}')    # 改变形状
 print(x)
 print(f'zero_:\n{x.zero_()}')       # 置 0
 
+print('\n<--- stack --->\n')
+
 x = torch.Tensor([[1,2,3],[4,5,6]])
 y = torch.tensor([[-1,-2,-3],[-4,-5,-6]])
+print(torch.stack((x,y)))
+print(torch.stack((x,y)).shape)
 print(torch.stack((x,y),0))
 print(torch.stack((x,y),0).shape)
 print(torch.stack((x,y),1))
 print(torch.stack((x,y),1).shape)
 print(torch.stack((x,y),2))
 print(torch.stack((x,y),2).shape)
+
+print('\n<--- operate --->\n')
 
 print(x+y)
 print(x)

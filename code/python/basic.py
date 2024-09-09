@@ -29,3 +29,9 @@ print(inp, out)
 
 t = (1,2,3)
 print(list(t))      # 将一个可迭代对象（如字符串、元组、集合、生成器等）换为一个列表
+
+# inf 代表无穷大 infinity
+a = float('inf')
+b = float('-inf')
+print(a > 1000000)  # True
+print(b < -1000000) # True

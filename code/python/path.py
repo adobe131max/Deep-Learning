@@ -10,6 +10,8 @@ print(sys.path)
 cwd = os.getcwd()
 print(f'当前工作目录: {cwd}')
 
+print(os.path.basename(r'D:\WorkStation\Projects\Deep-Learning\code\python\path.py'))
+
 # os.path.join 用于智能地将一个或多个路径组件连接起来。根据不同操作系统的路径分隔符来处理路径
 print(os.path.join(cwd, r'a\b\c'))
 print(os.path.join(cwd, 'a', 'b', 'c'))
