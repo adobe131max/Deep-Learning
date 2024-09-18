@@ -1,16 +1,19 @@
 import cv2
+import torch
+import numpy as np
 import matplotlib.pyplot as plt
 
 # 读取图片
 image_path = "./images/1.png"
 
 # cv2.IMREAD_COLOR      以彩色模式读取图像，忽略图像的透明度通道
-# cv2.IMREAD_GRAYSCALE  以灰度模式读取图像
+# cv2.IMREAD_GRAYSCALE  以灰度模式读取图像，shape = h, w
 # cv2.IMREAD_UNCHANGED  以原始模式读取图像，包括透明度通道（如果有）
 image = cv2.imread(image_path, cv2.IMREAD_COLOR)    # 路径不能有中文，否则image为None   默认的是BGR排列
 
 assert image is not None, f"failed to read image: {image_path}"
 height, width, channels = image.shape
+print(type(image))                      # numpy.ndarray
 print(f'image shape: {image.shape}')    # h, w, c
 print(f"图像尺寸：{width} x {height}")
 print(f"通道数：{channels}")
@@ -44,5 +47,9 @@ plt.show()
 image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 print(f'image shape: {image.shape}')
 cv2.imshow("IMG", image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+cv2.imshow("IMG", torch.randint(0, 256, (300, 400, 3)).numpy().astype(np.uint8))
 cv2.waitKey(0)
 cv2.destroyAllWindows()
