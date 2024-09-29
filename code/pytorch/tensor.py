@@ -1,15 +1,25 @@
 import torch
+import numpy
 
 # 1. 创建tensor
 
-x = torch.Tensor([[1,2,3],[4,5,6]]) # 指定tensor内容
+a = numpy.array([1, 2, 3])
+x = torch.as_tensor(a)
 print(x)
-print(type(x))                  # torch.Tensor
 print(x.shape)
-print(x.size())                 # .shape = .size()
-print(x.dtype)                  # tensor中元素的类型
+print(x.dtype)
+x = torch.tensor([[1,2,3],[4,5,6]])
+print(x)
+print(x.shape)
+print(x.dtype)
+x = torch.Tensor([[1,2,3],[4,5,6]]) # 指定tensor内容 torch.Tensor() == torch.FloatTensor()
+print(x)
+print(type(x))                      # torch.Tensor
+print(x.shape)
+print(x.size())                     # .shape = .size()
+print(x.dtype)                      # tensor中元素的类型
 
-print(torch.Tensor(2,3))            # 创建tensor，内容未初始化
+print(torch.Tensor(2,3))            # 指定shape创建tensor，内容未初始化
 print(torch.IntTensor(2,3))         # 指定类型的tensor
 print(torch.randint(0, 10, (3, 4))) # [low high) shape
 print(torch.zeros(2,3))             # 全 0
