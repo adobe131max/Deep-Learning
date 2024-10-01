@@ -1,17 +1,28 @@
 import torch
 import numpy
 
+a = numpy.array([1, 2, 3])
+
+# dtype
+print(torch.int16 == torch.short)
+print(torch.int32 == torch.int)
+print(torch.int64 == torch.long)
+print(torch.float16 == torch.half)
+print(torch.float32 == torch.float)
+print(torch.float64 == torch.double)
+
 # 1. 创建tensor
 
-a = numpy.array([1, 2, 3])
 x = torch.as_tensor(a)
 print(x)
 print(x.shape)
 print(x.dtype)
+
 x = torch.tensor([[1,2,3],[4,5,6]])
 print(x)
 print(x.shape)
 print(x.dtype)
+
 x = torch.Tensor([[1,2,3],[4,5,6]]) # 指定tensor内容 torch.Tensor() == torch.FloatTensor()
 print(x)
 print(type(x))                      # torch.Tensor
