@@ -41,5 +41,6 @@ print('bbox:', bbox)
 # 其它操作
 
 # 扩展数组维度
-print(shape[:, None, None])     # 只能对numpy.ndarray和torch.tensor进行这种操作，不能对list
+print(shape[:, None, None])     # shape: shape → (*shape, 1, 1) 只能对numpy.ndarray和torch.tensor进行这种操作，不能对list
+print(shape[None])              # shape: shape → (1, *shape)
 print(src[:, None])

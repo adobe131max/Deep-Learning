@@ -26,7 +26,7 @@ Deep-Learning/
 │   ├── python/         # python基础
 │   ├── pytorch/        # pytorch基础
 │   ├── test/           # 测试
-│   └── tools/          # 常用工具库
+│   └── utils/          # 常用工具库
 │
 ├── data/               # 数据集
 │

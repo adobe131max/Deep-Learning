@@ -72,3 +72,24 @@ print(x)
 
 x = torch.tensor([1])
 print(x.item())     # tensor to num
+
+print('\n<--- test --->\n')
+
+bboxs = torch.tensor([[1, 2, 3, 4], [5, 6, 7, 8]])
+xmin, ymin, xmax, ymax = bboxs.unbind(1)
+print(xmin)
+print(torch.stack((xmin, ymin, xmax, ymax), dim=1))
+
+test = torch.tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+print(test.shape)
+print(test.unbind(1))
+
+a = torch.tensor([1, 2, 3, 4, 5])
+b = torch.tensor([0, 0, 0, 0, 0])
+for i, j in zip(a, b):
+    j.copy_(i)
+print(b)
+for i in a:
+    print(type(i))
+    i.copy_(1)
+print(a)
