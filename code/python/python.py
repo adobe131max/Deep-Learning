@@ -15,6 +15,11 @@ print(id(d))
 c[0] = 0
 print(d)
 
+a = [1, 2, 3]
+b = a
+a = [4, 5, 6]
+print(b)        # a、b虽然有相同的引用，但a、b本身是独立的
+
 print('\n<--- copy --->\n')
 
 # 浅拷贝
