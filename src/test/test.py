@@ -53,3 +53,24 @@ anchors = [torch.cat(anchors_per_image) for anchors_per_image in anchors]
 print(f'id(anchors[0]) == id(anchors[1]): {id(anchors[0]) == id(anchors[1])}')
 anchors[0][0] = 0
 print(anchors)
+
+# 高级切片
+obj = torch.tensor([[1, 2, 3, 4, 5],
+                    [6, 7, 8, 9 ,0]])
+batch_idx = torch.tensor([[0],
+                          [1]])
+top_n_idx = torch.tensor([[1, 2, 0],
+                          [4, 3, 2]])
+print(obj[batch_idx, top_n_idx])
+
+boxs = torch.tensor([[1, 2, 3, 4],
+                     [5, 6, 7, 8]])
+print(boxs[..., 0::2])
+print(boxs[:, 0::2])
+x = boxs[:, 0::2]
+y = boxs[:, 1::2]
+print(torch.cat((x, y), dim=1))
+print(torch.stack((x, y), dim=1))
+print(torch.stack((x, y), dim=2))
+
+print(boxs.max())

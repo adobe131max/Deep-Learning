@@ -102,7 +102,7 @@ def compute():
 def tensors():
     '''
     多个tensor之间的操作
-    stack cat
+    stack cat 返回新的tensor,不共享数据
     '''
     print('\n<--- stack --->\n')
 
