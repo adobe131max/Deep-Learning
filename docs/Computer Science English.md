@@ -11,3 +11,5 @@ index                           索引
 indices                         索引，index的复数
 
 retrieve                        检索
+
+foreground                      前景

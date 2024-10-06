@@ -1,7 +1,7 @@
 import torch
 import numpy
 
-a = numpy.array([1, 2, 3])
+a = numpy.array([1, 2, 3])      # numpy默认int32 torch默认int64
 
 # dtype
 print(torch.int16 == torch.short)
@@ -12,18 +12,26 @@ print(torch.float32 == torch.float)
 print(torch.float64 == torch.double)
 
 # 1. 创建tensor
+# torch.tensor()    复制数据
+# torch.Tensor()
+# torch.as_tensor() 不复制数据，共享内存
 
-x = torch.as_tensor(a)
+x = torch.tensor(5)
+print(x.dim())          # 0维tensor
+
+x = torch.as_tensor(a)  # dtype与传入的dtype相同
 print(x)
 print(x.shape)
 print(x.dtype)
+print(a.dtype)
 
-x = torch.tensor([[1,2,3],[4,5,6]])
+x = torch.tensor([[1,2,3],[4,5,6]]) # 默认int64
 print(x)
 print(x.shape)
 print(x.dtype)
+print(x.dim())
 
-x = torch.Tensor([[1,2,3],[4,5,6]]) # 指定tensor内容 torch.Tensor() == torch.FloatTensor()
+x = torch.Tensor([[1,2,3],[4,5,6]]) # 默认float32 torch.Tensor() == torch.FloatTensor()
 print(x)
 print(type(x))                      # torch.Tensor
 print(x.shape)
@@ -62,6 +70,12 @@ print(torch.stack((x,y),1))
 print(torch.stack((x,y),1).shape)
 print(torch.stack((x,y),2))
 print(torch.stack((x,y),2).shape)
+
+print('\n<--- cat --->\n')
+
+xy = torch.cat((x, y))
+print(xy)
+print(xy.shape)
 
 print('\n<--- operate --->\n')
 

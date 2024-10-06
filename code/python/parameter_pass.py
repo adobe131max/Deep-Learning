@@ -43,3 +43,10 @@ def reassign_list(lst):
 my_list = [1, 2, 3]
 reassign_list(my_list)
 print(my_list)  # [1, 2, 3]（没有被修改）
+
+my_list = []
+a = [1, 2, 3]
+my_list.append(a)
+my_list.append(a)
+a[0] = 0
+print(my_list)
