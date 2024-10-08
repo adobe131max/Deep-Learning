@@ -1,6 +1,7 @@
 import copy
 
 # python中一切皆对象，赋值运算符=只是建立引用而不是复制 
+# 每个变量可以理解为只是其引用的地址
 a = 1           # a储存的是1的地址
 b = a           # b也储存的是1的地址
 print(id(a))    # id是变量中存储的地址
@@ -41,3 +42,17 @@ print(id(a[2]))
 print(id(b[2]))
 a[2][0] = 0
 print(b)
+
+# 所有的变量都相当于C++的指针
+# 直接赋值形参不会改变实参
+def assign(x):
+    x = [1, 1, 1]
+
+def change(x):
+    x[0] = 0
+    
+x = [1, 2, 3]
+assign(x)
+print(x)
+change(x)
+print(x)

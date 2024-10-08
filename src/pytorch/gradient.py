@@ -1,5 +1,19 @@
 import torch
 
+# 什么是梯度 - 就是偏导
+# 模型的参数需要梯度，输入不需要梯度
+
+# x是输入，不需要梯度；w、h是参数，需要梯度
+x = torch.tensor(2.0)
+w = torch.tensor(10.0, requires_grad=True)
+h = torch.tensor(1.0, requires_grad=True)
+y = w * x + h
+print(y)
+y.backward()
+print(x.grad)
+print(w.grad)
+print(h.grad)
+
 # 自动求梯度
 
 x = torch.tensor(1.0, requires_grad=True)               # 求导时需要设置 requires_grad=True

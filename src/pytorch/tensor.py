@@ -1,7 +1,14 @@
 import torch
 import numpy
 
-a = numpy.array([1, 2, 3])      # numpy默认int32 torch默认int64
+# TODO
+# clamp
+
+def attribute():
+    '''
+    tensor的属性
+    '''
+    pass
 
 def test_dtype():
     '''
@@ -17,11 +24,14 @@ def test_dtype():
 def change_shape():
     '''
     改变tensor的形状:
-    reshape:    如果内存中连续和view一样,如果不连续则创建一个新的tensor
-    view:       要求在内存中连续，返回新的视图，共享底层数据
-    flatten:    展平
-    unbind:     拆分
+    reshape     如果内存中连续和view一样,如果不连续则创建一个新的tensor
+    view        要求在内存中连续，返回新的视图，共享底层数据
+    flatten     展平
+    squeeze     去除维度为1的维度
+    unsqueeze   增加维度
+    unbind      拆分
     '''
+    print('\n--- view & reshape ---\n')
     x = torch.tensor([[1,2,3],[4,5,6]])
     print(x.view(3, 2))
     x = x.permute(1, 0)
@@ -29,11 +39,21 @@ def change_shape():
     # print(x.view(-1))     # 不能view
     print(x.reshape(-1))    # -1 表示自动推导
     
+    print('\n--- flatten ---\n')
     x = torch.tensor([[[1],[2],[3]],[[4],[5],[6]]])
     print(x.shape)
     print(x.flatten())      # 默认展平成一维
     print(x.flatten(0, -2)) # -2表示倒数第二维，将[0, -2]维展平为一维
     
+    print('\n--- squeeze ---\n')
+    print(torch.tensor([[1],[2],[3]]).squeeze())
+    
+    print('\n--- unsqueeze ---\n')
+    x = torch.tensor([1, 2, 3])
+    print(x.unsqueeze(0))
+    print(x.unsqueeze(1))
+    
+    print('\n--- unbind ---\n')
     bboxs = torch.tensor([[1, 2, 3, 4], [5, 6, 7, 8]])
     xmin, ymin, xmax, ymax = bboxs.unbind(1)
     print(xmin)
@@ -46,6 +66,8 @@ def test_create():
     torch.tensor()    复制数据
     torch.as_tensor() 不复制数据，共享内存
     '''
+    a = numpy.array([1, 2, 3])      # numpy默认int32 torch默认int64
+    
     x = torch.tensor(5)
     print(x.dim())          # 0维tensor
 
@@ -98,6 +120,39 @@ def compute():
 
     x = torch.tensor([1])
     print(x.item())     # tensor to num
+    
+def process():
+    '''
+    torch.max       返回两个tensor: 最大值和索引
+    torch.nonzero   返回非0的索引
+    torch.eq        返回一个相同shape的tensor,每个元素为 True or False
+    torch.where     返回dimension个tensor,每个tensor的元素表示在该维度上的索引
+    '''
+    print('\n--- max ---\n')
+    x = torch.tensor([[1,2,3,4],
+                      [4,5,6,7],
+                      [7,8,9,0]])
+    val, idx = x.max(dim=0)     # dim=0 是寻找每列的最大元素
+    print(val)
+    print(idx)
+    val, idx = x.max(dim=1)     # dim=0 是寻找每行的最大元素
+    print(val)
+    print(idx)
+    
+    print('\n--- nonzero ---\n')
+    x = torch.tensor([0, 1, -1, 0, 9, 4])
+    print(x.nonzero())
+    
+    print('\n--- eq ---\n')
+    print(x.eq(0))
+    y = torch.tensor([[0, 1, 2],
+                      [0, 1, 0]])
+    print(y.eq(0))
+    
+    print('\n--- where ---\n')
+    print(torch.where(x.eq(0)))
+    print(torch.where(y.eq(0)))
+    
 
 def tensors():
     '''
@@ -105,7 +160,8 @@ def tensors():
     stack cat 返回新的tensor,不共享数据
     '''
     print('\n<--- stack --->\n')
-
+    
+    # stack会在指定的dimension前插入一个长度为输入tensor个数的dimension
     x = torch.Tensor([[1,2,3],[4,5,6]])
     y = torch.tensor([[-1,-2,-3],[-4,-5,-6]])
     print(torch.stack((x,y)))
@@ -131,4 +187,5 @@ def tensors():
     print(xy.shape)
 
 if __name__ == '__main__':
-    change_shape()
+    # change_shape()
+    process()

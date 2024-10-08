@@ -71,7 +71,7 @@ $$
 $$
 
 - $y_i$ 是样本 i 的真实标签（0 或 1）
-- $\hat{y}_i$ 是模型对样本 i 的预测概率
+- $\hat{y}_i$ 是模型对样本 i 的预测概率（需要经过sigmoid处理，表示预测的标签为1的概率）
 
 ### Categorical Cross Entropy Loss (Softmax Loss)
 

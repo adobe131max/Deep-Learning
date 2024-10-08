@@ -1,9 +1,27 @@
 import math
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
-## 多分类
- # 定义 loss 为 Cross Entropy Loss
+# 二分类
+# BCEWithLogitsLoss 会对预测结果进行 sigmoid 处理而 BCELoss 则不会
+# BCEWithLogitsLoss 等价于 F.binary_cross_entropy_with_logits
+criterion = nn.BCEWithLogitsLoss()
+predict = torch.tensor([10, 4, -5], dtype=torch.float32)
+target = torch.tensor([1, 1, 0], dtype=torch.float32)
+loss = criterion(predict, target)
+print(loss)
+
+# 验证
+predict = F.sigmoid(predict)
+print(predict)
+loss0 = -math.log(predict[0])
+loss1 = -math.log(predict[1])
+loss2 = -math.log(1 - predict[2])
+print((loss0 + loss1 + loss2) / 3)
+
+# 多分类
+# 定义 loss 为 Cross Entropy Loss
 criterion = nn.CrossEntropyLoss()                  
 
 # 预测概率（这里并不需要进行softmax，CrossEntropyLoss中已经包含了softmax）

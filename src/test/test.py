@@ -74,3 +74,10 @@ print(torch.stack((x, y), dim=1))
 print(torch.stack((x, y), dim=2))
 
 print(boxs.max())
+
+def func(a):
+      a = [1, 2, 3]
+
+i = [1]
+func(i)
+print(i)
