@@ -1,7 +1,7 @@
 *.exe
 *.log
 
-/code/test/test.py
+/src/test/test.py
 
 /data/
 __pycache__/

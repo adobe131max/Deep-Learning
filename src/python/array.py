@@ -38,6 +38,9 @@ print('bbox:', bbox[:, [0, 2]])
 bbox[:, [0, 2]] = torch.tensor(10) - bbox[:, [2, 0]]
 print('bbox:', bbox)
 
+# [[0][0] [1][1] [2][2]]
+print(src[[0, 1, 2], [0, 1, 2]])
+
 # 其它操作
 
 # 扩展数组维度

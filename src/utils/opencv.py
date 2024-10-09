@@ -3,6 +3,8 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 
+from torchvision.transforms import functional as F
+
 # 读取图片
 image_path = "./images/1.png"
 
@@ -17,6 +19,11 @@ print(type(image))                      # numpy.ndarray
 print(f'image shape: {image.shape}')    # h, w, c
 print(f"图像尺寸：{width} x {height}")
 print(f"通道数：{channels}")
+
+# numpy.ndarray → torch.Tensor
+# h, w, c → c, h, w
+image0 = F.to_tensor(image)
+print(image0.shape)
 
 # 显示图片
 cv2.imshow("IMG", image)            # 窗口名，imread读入的图像 cv2 显示也是按照BGR排列

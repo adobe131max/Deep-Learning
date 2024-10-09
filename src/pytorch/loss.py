@@ -8,7 +8,7 @@ import torch.nn.functional as F
 # BCEWithLogitsLoss 等价于 F.binary_cross_entropy_with_logits
 criterion = nn.BCEWithLogitsLoss()
 predict = torch.tensor([10, 4, -5], dtype=torch.float32)
-target = torch.tensor([1, 1, 0], dtype=torch.float32)
+target = torch.tensor([1, 1, 0], dtype=torch.float32)       # target 需要是 0 或 1 的浮点数
 loss = criterion(predict, target)
 print(loss)
 
