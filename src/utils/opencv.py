@@ -20,10 +20,13 @@ print(f'image shape: {image.shape}')    # h, w, c
 print(f"图像尺寸：{width} x {height}")
 print(f"通道数：{channels}")
 
-# numpy.ndarray → torch.Tensor
-# h, w, c → c, h, w
+# PIL 图像（Image.Image类型） | numpy.ndarray → torch.Tensor
+# 1. h, w, c → c, h, w
+# 2. 数据范围归一化到 [0.0, 1.0]
 image0 = F.to_tensor(image)
 print(image0.shape)
+print(image0.dtype) # float32
+print(image0[0][:10][:10])
 
 # 显示图片
 cv2.imshow("IMG", image)            # 窗口名，imread读入的图像 cv2 显示也是按照BGR排列

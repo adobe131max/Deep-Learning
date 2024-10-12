@@ -81,3 +81,13 @@ def func(a):
 i = [1]
 func(i)
 print(i)
+
+print(32.0 % 2)
+
+def test(x):
+      x[0] = 0
+      
+s = torch.tensor([[1, 2, 3],
+                  [4, 5, 6]])
+test(s[1])
+print(s)

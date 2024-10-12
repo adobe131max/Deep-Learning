@@ -74,6 +74,8 @@ def test_create():
     x = torch.as_tensor(a)  # dtype与传入的dtype相同
     print(x)
     print(x.shape)
+    print(type(x.shape))    # torch.Size
+    print(type(x.shape[0])) # int
     print(x.dtype)
     print(a.dtype)
 
@@ -95,7 +97,8 @@ def test_create():
     print(torch.randint(0, 10, (3, 4))) # [low high) shape
     print(torch.zeros(2,3))             # 全 0
     print(torch.ones(2,3))              # 全 1
-    print(torch.randn(2,3))             # 浮点型随机数 - 均值为0，方差为1，服从b标准正态分布
+    x = torch.randn(2,3)                # 浮点型随机数 - 均值为0，方差为1，服从b标准正态分布
+    print(x.dtype)                      # float32
     print(torch.rand(2,3))              # 浮点型随机数 - [0, 1) 均匀分布
     print(torch.arange(1,10))           # [start, end)
 
@@ -185,7 +188,15 @@ def tensors():
     xy = torch.cat((x, y), dim=1)
     print(xy)
     print(xy.shape)
-
+    
+def broadcast():
+    x = torch.tensor([1, 2, 3])
+    g = torch.tensor(10)
+    x += g
+    print(x)
+    
 if __name__ == '__main__':
     # change_shape()
-    process()
+    # test_create()
+    # process()
+    broadcast()
