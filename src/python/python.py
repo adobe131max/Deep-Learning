@@ -1,4 +1,5 @@
 import copy
+import torch
 
 # python中一切皆对象，赋值运算符=只是建立引用而不是复制 
 # 每个变量可以理解为只是其引用的地址
@@ -20,6 +21,19 @@ a = [1, 2, 3]
 b = a
 a = [4, 5, 6]
 print(b)        # a、b虽然有相同的引用，但a、b本身是独立的
+
+a = torch.Tensor([1, 2, 3])
+b = a
+b /= 2          # 原地操作，直接修改了a，共享内存慎用
+print(a)
+print(id(a))
+print(id(b))
+a = torch.Tensor([1, 2, 3])
+b = a
+b = b / 2       # 创建新的tensor
+print(a)
+print(id(a))
+print(id(b))
 
 print('\n<--- copy --->\n')
 
