@@ -130,9 +130,11 @@ def compute():
     x = torch.Tensor([[1,2,3],[4,5,6]])
     y = torch.tensor([[-1,-2,-3],[-4,-5,-6]])
     print(x+y)
+    z = x
+    x += y          # 直接改变原tensor，如果不想影响z，应该使用 x = x + y，会创建一个新的tensor
     print(x)
-    x+=y        # 直接改变原tensor
-    print(x)
+    print(z)
+    print(id(x) == id(z))
 
     x = torch.tensor([1])
     print(x.item())     # tensor to num
