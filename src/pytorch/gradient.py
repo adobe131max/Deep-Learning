@@ -5,10 +5,12 @@ import torch
 
 # x是输入，不需要梯度；w、h是参数，需要梯度
 x = torch.tensor(2.0)
+print(x.requires_grad)
 w = torch.tensor(10.0, requires_grad=True)
 h = torch.tensor(1.0, requires_grad=True)
 y = w * x + h
 print(y)
+print(y.requires_grad)
 y.backward()
 print(x.grad)
 print(w.grad)

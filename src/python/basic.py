@@ -36,3 +36,11 @@ a = float('inf')
 b = float('-inf')
 print(a > 1000000)  # True
 print(b < -1000000) # True
+
+l = [1, 2, 3]
+print(i for i in l)
+s = sum(i for i in l)
+print(s)
+
+s = sum(l)
+print(s)

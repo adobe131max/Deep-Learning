@@ -19,7 +19,19 @@ def test_dtype():
     print(torch.int64 == torch.long)
     print(torch.float16 == torch.half)
     print(torch.float32 == torch.float)
-    print(torch.float64 == torch.double) 
+    print(torch.float64 == torch.double)
+    
+    x = torch.tensor([1, 2, 3])
+    y = x.float()   # to float32
+    z = y.int()     # to int32
+    print(x.dtype)
+    print(y.dtype)
+    print(z.dtype)
+    
+    x = torch.tensor(1)
+    print(x)
+    a = x.item()    # 对于单个数值的张量，返回一个标准的 Python 数值类型
+    print(a)
 
 def change_shape():
     '''
@@ -106,6 +118,7 @@ def compute():
     '''
     tensor计算
     '''
+    x = torch.tensor([1, 2, 3])
     print(f'add:\n{x.add(1)}')          # 生成一个新的tensor
     print(x)
     print(f'add_:\n{x.add_(1)}')        # 带_的直接在原tensor上改变
@@ -124,9 +137,15 @@ def compute():
     x = torch.tensor([1])
     print(x.item())     # tensor to num
     
+    x = torch.tensor([1, 2])
+    y = torch.tensor([2])
+    z = x * y
+    print(z)
+    
 def process():
     '''
     torch.max       返回两个tensor: 最大值和索引
+    torch.sum       返回所有元素的和
     torch.nonzero   返回非0的索引
     torch.eq        返回一个相同shape的tensor,每个元素为 True or False
     torch.where     返回dimension个tensor,每个tensor的元素表示在该维度上的索引
@@ -141,6 +160,9 @@ def process():
     val, idx = x.max(dim=1)     # dim=0 是寻找每行的最大元素
     print(val)
     print(idx)
+    
+    print('\n--- sum ---\n')
+    print(x.sum())
     
     print('\n--- nonzero ---\n')
     x = torch.tensor([0, 1, -1, 0, 9, 4])
@@ -161,6 +183,7 @@ def tensors():
     '''
     多个tensor之间的操作
     stack cat 返回新的tensor,不共享数据
+    torch.meshgrid      创建多维网格坐标矩阵
     '''
     print('\n<--- stack --->\n')
     
@@ -189,6 +212,23 @@ def tensors():
     print(xy)
     print(xy.shape)
     
+    a = torch.tensor([1, 2, 3, 4])
+    b = torch.tensor([5, 6, 7, 8])
+    c = torch.cat((a, b))
+    print(c)
+    print(c.reshape(-1, 4))
+    print(c.reshape(-1, 2))
+    
+    print('\n<--- meshgrid --->\n')
+    
+    x = torch.tensor([1, 2, 3])
+    y = torch.tensor([1, 2])
+    
+    xx, yy = torch.meshgrid([x, y], indexing='ij')
+    print(xx)
+    print(yy)
+
+    
 def broadcast():
     x = torch.tensor([1, 2, 3])
     g = torch.tensor(10)
@@ -196,7 +236,10 @@ def broadcast():
     print(x)
     
 if __name__ == '__main__':
+    # test_dtype()
     # change_shape()
     # test_create()
+    # compute()
     # process()
-    broadcast()
+    tensors()
+    # broadcast()
