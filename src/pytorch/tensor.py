@@ -113,6 +113,24 @@ def test_create():
     print(x.dtype)                      # float32
     print(torch.rand(2,3))              # 浮点型随机数 - [0, 1) 均匀分布
     print(torch.arange(1,10))           # [start, end)
+    print(torch.rand(1))
+
+
+def base_create():
+    """
+    基于已有tensor创建新tensor
+    torch.repeat_interleave         重复张量中的元素
+    """
+    print('\n--- repeat interleave ---\n')
+    x = torch.tensor([
+        [[1, 2, 3]],
+        [[4, 5, 6]]
+    ])
+    y = x.repeat_interleave(2, dim=1)   # 指定dim的shape会乘以指定的次数
+    print(y)
+    print(x.shape)
+    print(y.shape)
+
 
 def compute():
     '''
@@ -135,6 +153,10 @@ def compute():
     print(x)
     print(z)
     print(id(x) == id(z))
+    
+    a = torch.tensor(2)
+    b = torch.tensor(3)
+    print(a * b)
 
     x = torch.tensor([1])
     print(x.item())     # tensor to num
@@ -205,7 +227,7 @@ def tensors():
 
     # cat的dimension的shape会相加，但其余dimension的shape必须相同
     x = torch.Tensor([[1,2,3],[4,5,6]])
-    y = torch.tensor([[-1,-2,-3],[-4,-5,-6]])
+    y = torch.tensor([[7,8,9],[-1,-2,-3],[-4,-5,-6]])
     xy = torch.cat((x, y))
     print(xy)
     print(xy.shape)
@@ -241,7 +263,8 @@ if __name__ == '__main__':
     # test_dtype()
     # change_shape()
     # test_create()
+    base_create()
     # compute()
     # process()
-    tensors()
+    # tensors()
     # broadcast()
