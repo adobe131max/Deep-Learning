@@ -8,6 +8,8 @@
 | variance                      | 方差                  |
 | normal distribution           | 正态分布              |
 | uniform distribution          | 均匀分布              |
+| accuracy                      | 准确度                |
+| precision                     | 精确度，精度，查准率   |
 | index                         | 索引                  |
 | indices                       | 索引，index的复数     |
 | retrieve                      | 检索                  |

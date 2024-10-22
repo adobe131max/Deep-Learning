@@ -24,6 +24,7 @@ print(f'train dataset len: {len(train_dataset)}')
 print(f'test dataset len: {len(test_dataset)}')
 
 # 创建数据加载器
+# 默认drop_last为false，不足一个batch也会输入，也就是batch不一定等于batch size
 train_loader = DataLoader(dataset=train_dataset, batch_size=64, shuffle=True)
 test_loader = DataLoader(dataset=test_dataset, batch_size=1000, shuffle=False)
 
