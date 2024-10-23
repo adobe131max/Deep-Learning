@@ -1,6 +1,6 @@
 import time
 
-# decorate函数接受一个函数作为参数，并返回一个新的函数，由新的函数调用传入的函数
+# decorate函数接受一个函数作为参数，并返回一个新的函数，由新的函数调用被装饰的函数
 def decorate(func):
     def wrapper(*args, **kwargs):
         start_time = time.time()

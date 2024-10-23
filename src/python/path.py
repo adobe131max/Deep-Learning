@@ -1,8 +1,6 @@
 import os
 import sys
 
-import module
-
 # Python 解释器在导入模块时搜索模块的路径
 # 第一个路径为当前脚本所在的路径
 for path in sys.path:
