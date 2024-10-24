@@ -39,6 +39,7 @@ c = [*a, *b]
 print(c)
 
 # **kwargs 将多个参数打包成一个dict: kwargs
+# kwargs: keyword arguments 关键字参数
 def func(**kwargs):
     print(kwargs)
     for key, value in kwargs.items():

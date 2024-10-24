@@ -6,6 +6,7 @@
 /data/
 __pycache__/
 runs/
+venv/
 
 # 包含密码，只提供模板
 config.yaml
