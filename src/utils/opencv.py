@@ -5,13 +5,33 @@ import matplotlib.pyplot as plt
 
 from torchvision.transforms import functional as F
 
+
+image = cv2.imread('./images/red.png', cv2.IMREAD_COLOR)
+# BGR
+print(image[0][0])
+rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+# RGB
+print(rgb[0][0])
+# BGR2RGB 和 RGB2BGR 其实是等价的，= [:, :, ::-1]
+print(cv2.cvtColor(image, cv2.COLOR_RGB2BGR)[0][0])
+print(image[:, :, ::-1][0][0])
+
 # 读取图片
 image_path = "./images/1.png"
 
 # cv2.IMREAD_COLOR      以彩色模式读取图像，忽略图像的透明度通道
 # cv2.IMREAD_GRAYSCALE  以灰度模式读取图像，shape = h, w
 # cv2.IMREAD_UNCHANGED  以原始模式读取图像，包括透明度通道（如果有）
+# cv2 读取图片时会把 RGB 的排列保存为 BGR 排列
 image = cv2.imread(image_path, cv2.IMREAD_COLOR)    # 路径不能有中文，否则image为None   默认的是BGR排列
+
+# 写入时也会把 BGR 存储的图片还原为 RGB 排列保存
+cv2.imwrite("./images/1_copy.png", image)
+
+image_RGB = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+cv2.imwrite("./images/1_BGR.png", image_RGB)
+image_BGR = cv2.cvtColor(image_RGB, cv2.COLOR_BGR2RGB)
+cv2.imwrite("./images/1_RGB.png", image_BGR)
 
 assert image is not None, f"failed to read image: {image_path}"
 height, width, channels = image.shape
