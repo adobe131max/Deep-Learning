@@ -3,6 +3,7 @@
 
 /src/test/
 
+.idea/
 /data/
 __pycache__/
 runs/

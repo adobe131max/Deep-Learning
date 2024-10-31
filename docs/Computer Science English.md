@@ -14,3 +14,5 @@
 | indices                       | 索引，index的复数     |
 | retrieve                      | 检索                  |
 | foreground                    | 前景                  |
+| polygon                       | 多边形                |
+| ellipse                       | 椭圆                  |

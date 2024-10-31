@@ -1,7 +1,11 @@
+import sys
 # import package1.a
 import package.package1.a
 
 print('main.py')
+
+for path in sys.path:
+    print(path)
 
 r'''
 运行该脚本
@@ -13,5 +17,5 @@ r'''
 2. package内的脚本相互调用使用相对导入
 3. 直接运行的脚本与package内的脚本分开
 
-https://www.zhihu.com/people/ustinian-59-58/posts
+https://zhuanlan.zhihu.com/p/971049360
 '''

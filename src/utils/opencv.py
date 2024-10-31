@@ -15,6 +15,8 @@ print(rgb[0][0])
 # BGR2RGB 和 RGB2BGR 其实是等价的，= [:, :, ::-1]
 print(cv2.cvtColor(image, cv2.COLOR_RGB2BGR)[0][0])
 print(image[:, :, ::-1][0][0])
+# F.to_tensor 不改变排列
+print(F.to_tensor(image)[:, 0, 0])
 
 # 读取图片
 image_path = "./images/1.png"

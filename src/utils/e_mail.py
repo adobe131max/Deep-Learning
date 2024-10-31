@@ -3,6 +3,17 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+
+def sendEmail(subject, body, path):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            ans = func(*args, **kwargs)
+            send_email(subject, body, path)
+            return ans
+        return wrapper
+    return decorator
+
+
 def send_email(subject, body, path):
     with open(path, 'r') as file:
         config = yaml.safe_load(file)

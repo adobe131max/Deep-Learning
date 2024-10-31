@@ -41,6 +41,8 @@ def change_shape():
     flatten     展平
     squeeze     去除维度为1的维度
     unsqueeze   增加维度
+    permute     重新排列
+    transpose   转置
     unbind      拆分
     '''
     print('\n--- view & reshape ---\n')
@@ -64,6 +66,18 @@ def change_shape():
     x = torch.tensor([1, 2, 3])
     print(x.unsqueeze(0))
     print(x.unsqueeze(1))
+    
+    print('\n--- permute ---\n')
+    x = torch.tensor([[1, 2, 3, 4],
+                      [5, 6, 7, 8]])
+    y = x.permute(1, 0)         # 交换0、1维上的shape，效果类似 transpose
+    print(y)
+    print(y.is_contiguous())    # 和 view、reshape不同，permute 改变了元素的底层排列顺序（展平成一维看）
+    
+    print('\n--- transpose ---\n')
+    z = x.transpose(0, 1)       # 和 permute 一样，但一次只能操作两个维度
+    print(z)
+    print(z.is_contiguous())
     
     print('\n--- unbind ---\n')
     bboxs = torch.tensor([[1, 2, 3, 4], [5, 6, 7, 8]])
@@ -169,7 +183,7 @@ def compute():
 def process():
     '''
     torch.max       返回两个tensor: 最大值和索引
-    torch.sum       返回所有元素的和
+    torch.sum       返回所有元素的和, dim是要减少的一个或多个维度
     torch.nonzero   返回非0的索引
     torch.eq        返回一个相同shape的tensor,每个元素为 True or False
     torch.where     返回dimension个tensor,每个tensor的元素表示在该维度上的索引
@@ -186,7 +200,16 @@ def process():
     print(idx)
     
     print('\n--- sum ---\n')
-    print(x.sum())
+    print(x.sum())              # 默认减少所有维度
+    print(x.sum(dim=0))         # 减少0维
+    print(x.sum(dim=1))
+    y = torch.tensor([
+        [[1, 2, 3],
+         [4, 5, 6]],
+        [[7, 8, 9],
+         [0, 1, 2]]
+    ])
+    print(y.sum(dim=0))
     
     print('\n--- nonzero ---\n')
     x = torch.tensor([0, 1, -1, 0, 9, 4])
@@ -261,9 +284,9 @@ def broadcast():
     
 if __name__ == '__main__':
     # test_dtype()
-    # change_shape()
+    change_shape()
     # test_create()
-    base_create()
+    # base_create()
     # compute()
     # process()
     # tensors()

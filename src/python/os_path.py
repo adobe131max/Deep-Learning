@@ -1,12 +1,7 @@
 import os
-import sys
-
-# Python 解释器在导入模块时搜索模块的路径
-# 第一个路径为当前脚本所在的路径
-for path in sys.path:
-    print(path)
 
 # 所有的相对路径都是相对于工作目录而非该脚本的路径！！！
+
 # 获取当前工作目录 cwd(current working directory)，也就是命令行里执行的该脚本命令前面的路径
 # PS D:\WorkStation\Projects\Deep-Learning> & D:/Programs/anaconda3/envs/pytorch/python.exe "d:/WorkStation/Projects/Deep-Learning/code/python/operating system.py"
 # 上面的工作目录就是》前的 D:\WorkStation\Projects\Deep-Learning
