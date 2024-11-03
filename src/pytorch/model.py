@@ -1,11 +1,28 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 from torchvision.models import resnet50
 
-def save_and_load():
-    path = './model.pth'
 
+class Model(nn.Module):
+    def __init__(self):
+        super(Model, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3)
+        self.bn1 = nn.BatchNorm2d(16)
+        self.relu1 = nn.ReLU(inplace=True)
+        self.fc1 = nn.Linear(16, 10)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = self.relu1(x)
+        x = self.fc1(x)
+        x = F.relu(x)       # 不在模型的结构中，children() 和 modules() 中都不会包含
+        return x
+
+
+def save_and_load(path = './model.pth'):
     # 1. 保存完整模型（包括结构与权重）
     torch.save(model, path)
     # 完整模型加载
@@ -18,17 +35,29 @@ def save_and_load():
     # 载入模型权重
     model.load_state_dict(torch.load(path))
 
-model = resnet50()
 
-# 模型的下一层子结构
-for name, module in model.named_children():
-    print(name)
+def model_structure():
+    model = Model()
 
-# 模型的所有参数
-for name, param in model.named_parameters():
-    print(name)
+    # 模型的下一层子结构
+    # 只包含通过 self.xxx = ... 形式注册的 nn.Module 子类
+    print('model.named_children():')
+    for name, module in model.named_children():
+        print(name)
 
-# nn.Suquential
+    # 模型的所有模块（递归遍历所有模块）
+    # 第一个模块是模型本身，name 为空
+    print('model.named_modules():')
+    for name, module in model.named_modules():
+        print(name)
+
+    # 模型的所有参数
+    print('model.named_parameters():')
+    for name, param in model.named_parameters():
+        print(name)
+
+
+# nn.ModuleList
 # 模块之间的连接需要在forward方法中显式地指定，更加灵活，可以根据不同的输入条件动态地决定数据的流向
 class Model1(nn.Module):
     def __init__(self):
@@ -44,7 +73,8 @@ class Model1(nn.Module):
             x = layer(x)
         return x
 
-# nn.ModuleList
+
+# nn.Suquential
 # 模块按照添加的顺序自动连接，不需要在forward方法中再次指定连接方式，使用起来更加简洁，但灵活性相对较低
 class Model2(nn.Module):
     def __init__(self):
@@ -57,3 +87,7 @@ class Model2(nn.Module):
         
     def forward(self, x):
         return self.layers(x)
+    
+
+if __name__ == '__main__':
+    model_structure()

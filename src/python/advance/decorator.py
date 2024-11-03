@@ -1,5 +1,6 @@
 import time
 
+# 装饰器函数实现
 # decorate函数接受一个函数作为参数，并返回一个新的函数，由新的函数调用被装饰的函数
 def decorate(func):
     def wrapper(*args, **kwargs):
@@ -44,3 +45,9 @@ def say_hi():
     print('hi')
     
 say_hi()
+
+# TODO：装饰器类实现
+# 实现一个类，类中实现__call__方法，在__call__方法中实现装饰逻辑
+
+# torch.no_grad 实际上是通过 contextlib.ContextDecorator 实现的
+# 可以同时将一个上下文管理器用作装饰器，而不需要额外实现 __call__
