@@ -8,7 +8,12 @@ def attribute():
     '''
     tensor的属性
     '''
-    pass
+    x = torch.randn((2, 3))
+    print(x.dim())
+    print(x.shape)
+    print(x.dtype)
+    print(x.device)
+    print(x.requires_grad)
 
 def test_dtype():
     '''
@@ -182,11 +187,13 @@ def compute():
     
 def process():
     '''
-    torch.max       返回两个tensor: 最大值和索引
-    torch.sum       返回所有元素的和, dim是要减少的一个或多个维度
-    torch.nonzero   返回非0的索引
-    torch.eq        返回一个相同shape的tensor,每个元素为 True or False
-    torch.where     返回dimension个tensor,每个tensor的元素表示在该维度上的索引
+    torch.max                       返回两个tensor: 最大值和索引
+    torch.sum                       返回所有元素的和, dim是要减少的一个或多个维度
+    torch.mean                      平局值
+    torch.nonzero                   返回非0的索引,返回dimension个tensor,每个tensor的元素表示在该维度上的索引
+    torch.eq                        返回一个相同shape的tensor,每个元素为 True or False
+    torch.where(condition)          等价于 torch.nonzero
+    torch.where(condition, x, y)    返回一个 tensor,condition 为 True 时为 x ,否则为 y
     '''
     print('\n--- max ---\n')
     x = torch.tensor([[1,2,3,4],
@@ -224,6 +231,11 @@ def process():
     print('\n--- where ---\n')
     print(torch.where(x.eq(0)))
     print(torch.where(y.eq(0)))
+    
+    x = torch.randn(3, 2)
+    y = torch.ones(3, 2)
+    print(x)
+    print(torch.where(x > 0, x, y))
     
 
 def tensors():
@@ -281,13 +293,32 @@ def broadcast():
     g = torch.tensor(10)
     x += g
     print(x)
+
+
+def other():
+    r"""
+    torch.prod          返回所有元素的乘积(product)
+    torch.unique        返回所有不同的元素
+    """
+    print('\n<--- prod --->\n')
+    
+    x = torch.rand((2, 3, 4))
+    print(torch.prod(torch.tensor(x.shape)))
+    
+    print('\n<--- unique --->\n')
+    
+    x = torch.tensor([[0, 1, 0, 1, 1, 0, 2, 1]])
+    print(x.unique())
+    
     
 if __name__ == '__main__':
+    attribute()
     # test_dtype()
-    change_shape()
+    # change_shape()
     # test_create()
     # base_create()
     # compute()
     # process()
     # tensors()
     # broadcast()
+    # other()

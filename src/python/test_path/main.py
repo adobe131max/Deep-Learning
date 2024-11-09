@@ -6,6 +6,10 @@ print('main.py')
 
 for path in sys.path:
     print(path)
+    
+from package.package1.b import num
+
+print(num)
 
 r'''
 运行该脚本

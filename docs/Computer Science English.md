@@ -4,7 +4,9 @@
 | ----------------------------- | --------------------- |
 | profile                       | 配置文件              |
 | ratio                         | 比例，比率            |
+| metric                        | 指标                  |
 | mean                          | 平均数                |
+| product                       | 乘积                  |
 | variance                      | 方差                  |
 | normal distribution           | 正态分布              |
 | uniform distribution          | 均匀分布              |
@@ -15,4 +17,8 @@
 | retrieve                      | 检索                  |
 | foreground                    | 前景                  |
 | polygon                       | 多边形                |
+| rectangle                     | 矩形，长方形          |
 | ellipse                       | 椭圆                  |
+| screen                        | 屏幕、筛查            |
+| setup                         | 安装、设置            |
+| image resolution              | 图像分辨率            |

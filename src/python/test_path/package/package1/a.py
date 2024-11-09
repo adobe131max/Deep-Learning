@@ -8,3 +8,5 @@ print('a.py')
 
 for path in sys.path:
     print(path)
+
+b.num = 2

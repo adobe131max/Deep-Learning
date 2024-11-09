@@ -33,6 +33,9 @@ def save_and_load(path = './model.pth'):
     # 需要先创建模型
     model = resnet50()
     # 载入模型权重
+    # strict=False
+    # 如果加载的权重文件中的键与模型中的参数名称不完全匹配，或者模型中有一些参数在权重文件中不存在，不会引发错误。
+    # 对于模型中存在但权重文件中不存在的参数，这些参数将保持其初始状态
     model.load_state_dict(torch.load(path))
 
 
