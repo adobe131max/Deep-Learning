@@ -12,6 +12,8 @@
 | uniform distribution          | 均匀分布              |
 | accuracy                      | 准确度                |
 | precision                     | 精确度，精度，查准率   |
+| axis                          | 轴                    |
+| axes                          | 轴(复)                |
 | index                         | 索引                  |
 | indices                       | 索引，index的复数     |
 | retrieve                      | 检索                  |

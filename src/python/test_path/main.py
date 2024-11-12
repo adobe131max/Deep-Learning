@@ -1,6 +1,6 @@
 import sys
 # import package1.a
-import package.package1.a
+import package.package1.a as a
 
 print('main.py')
 
@@ -9,6 +9,20 @@ for path in sys.path:
     
 from package.package1.b import num
 
+print(num)
+
+x = 1
+
+def touch():
+    global x, num      # 当在函数内部试图修改一个全局变量时，如果不使用 global 关键字声明，Python 会认为这是在函数内部创建一个新的局部变量，而不是修改全局变量
+    num += 1
+    x += 1
+
+touch()
+print(num)
+print(x)
+
+a.add()
 print(num)
 
 r'''

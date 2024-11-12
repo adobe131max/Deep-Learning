@@ -10,3 +10,6 @@ for path in sys.path:
     print(path)
 
 b.num = 2
+
+def add():
+    b.num = 0

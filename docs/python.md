@@ -12,14 +12,16 @@ python中一切皆对象，包括数字
 
 ## Module & Package
 
-**Module（模块）**：一个py文件就是一个模块  
+**Module（模块）**：一个py文件就是一个模块，包也是模块
 **Package（包）**：一个包含 “init.py” 文件的目录被称为包
 
-### import
-
-<https://zhuanlan.zhihu.com/p/971049360>
+## import
 
 Python中导入模块时，实际上会把被导入的模块执行一遍
+
+### 相对导入与绝对导入
+
+<https://zhuanlan.zhihu.com/p/971049360>
 
 ``` py
 import module_name                          # 导入模块
@@ -35,22 +37,8 @@ import package_name.module_name as name     # 别名简化
 from module_name import function_name/class_name/variable_name
 
 # 在包内部的模块中，可以使用相对路径来导入(.开头)
-# 绝对路径导入包内部模块在被调用会报错
 from .module1 import function_name
 ```
-
-### sys.path
-
-sys.path 是一个列表，包含了 Python 解释器搜索模块时会查找的所有路径。当使用 import 语句进行绝对导入时，Python 会按顺序从这些路径中查找要导入的模块
-
-直接运行脚本时 sys.path 包含直接运行的脚本的路径，以模块方式运行是则会包含当前工作目录
-
-``` py
-import sys
-print(sys.path)
-```
-
-### 总结
 
 1. 绝对导入的搜索路径基于 sys.path
 2. 相对导入的搜索路径基于当前包的层级关系，不能相对导入包外的模块，不能直接运行包含相对导入的模块
@@ -68,6 +56,33 @@ Tips:
 
 1. 不要直接运行包含相对导入的模块,因为相对导入是基于模块在包结构中的位置进行的，直接运行模块无法确定其在包中的位置,否则会引发`ImportError: attempted relative import with no known parent package`
 2. 相对导入只能在同一个顶层package中使用,不能相对导入package外的模块,否则会引发`ValueError: attempted relative import beyond top-level package`
+
+### import 与 from ... import ...
+
+如果 from a import b 的是 module，那么和 import a.b 没什么区别，只是简化了命名空间，等价于 import a.b as b，都会把 a 和 a.b 加入 sys.modules
+
+但如果 from import 的是变量/函数...，那么只是将变量拷贝到当前模块中，不可见其他模块对该变量的修改，除非再次导入
+
+相对导入 from . import module 会加入 package 和 package.module 到 sys.modules 中（从顶层 package 开始），但如果是 import module 添加的则是 module，此时 module 和 sys.modules 在 sys.modules 中的 key 不一样，所以会加载两次，它们之间的修改互相都不可见
+
+### sys.path
+
+sys.path 是一个列表，包含了 Python 解释器搜索模块时会查找的所有路径。当使用 import 语句进行绝对导入时，Python 会按顺序从这些路径中查找要导入的模块
+
+直接运行脚本时 sys.path 包含直接运行的脚本的路径，以模块方式运行是则会包含当前工作目录
+
+``` py
+import sys
+print(sys.path)
+```
+
+### sys.modules
+
+sys.modules 是一个字典，用于存储已经被导入的模块信息，键是模块的名称（以字符串形式表示），值是对应的已经导入的模块对象本身
+
+当使用 import 语句导入一个模块时,Python 首先会在 sys.modules 中查找是否已经存在该模块，如果已经存在,就直接返回对应的模块对象，如果不存在,会去查找并执行模块的代码进行导入，并将导入后的模块对象添加到 sys.modules 字典中
+
+在多个模块导入的同一个模块中，只要每个模块导入的 sys.modules 中的 key 相同，就是共享同一个模块，修改相互可见
 
 ## 特性
 

@@ -1,5 +1,14 @@
 def test_list():
-    pass
+    l1 = [1, 2, 3]
+    l2 = [4, 5, 6]
+    # 创建新列表
+    l3 = l1 + l2
+    print(l3)
+    # 直接修改原列表
+    l1.extend(l2)
+    print(l1)
+    l1.append(7)
+    print(l1)
 
 
 def test_tuple():
@@ -24,7 +33,16 @@ def test_dict():
         
     for key, value in info.items():
         print(key, value)
+    
+    # 字典推导式
+    numbers = [1, 2, 3, 4, 5]
+    squares = {n: n**2 for n in numbers}
+    
+
+def test_set():
+    pass
         
 
 if __name__ == '__main__':
-    test_tuple()
+    test_list()
+    # test_tuple()
