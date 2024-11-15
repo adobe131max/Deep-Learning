@@ -6,16 +6,16 @@
 可变数据类型：可以修改对象本身而无需创建一个新的对象
 不可变数据类型：无法修改对象本身，只能修改引用的对象（数字、字符串、tuple）
 
-python中变量本身不是独立地占用一个传统意义上的内存地址，更像是一个标签，指向一个内存中的对象
-python的赋值运算符=只是建立引用而不是复制  
+python中变量本身不是独立地占用一个传统意义上的内存地址，更像是一个指针，指向一个内存中的对象
+python的赋值运算符=只是建立变量和对象的引用关系而不是复制，这里的引用和C++的引用不是一个东西  
 python中一切皆对象，包括数字
 
-## Module & Package
+## import
+
+### Module & Package
 
 **Module（模块）**：一个py文件就是一个模块，包也是模块
-**Package（包）**：一个包含 “init.py” 文件的目录被称为包
-
-## import
+**Package（包）**：一个目录被称为包
 
 Python中导入模块时，实际上会把被导入的模块执行一遍
 
@@ -59,10 +59,15 @@ Tips:
 
 ### import 与 from ... import ...
 
+<https://zhuanlan.zhihu.com/p/6380569753>
+
+1. import 和 from import 有什么区别？  
 如果 from a import b 的是 module，那么和 import a.b 没什么区别，只是简化了命名空间，等价于 import a.b as b，都会把 a 和 a.b 加入 sys.modules
 
-但如果 from import 的是变量/函数...，那么只是将变量拷贝到当前模块中，不可见其他模块对该变量的修改，除非再次导入
+2. 导入模块和导入变量有什么区别？  
+但如果 from import 的是变量/函数...，那么只是一个建立一个引用 `a = sys.modules['moduleA'].a`，如果引用被 = 修改则不可见，如果是修改内部成员则可见(id不变)
 
+3. 是不是一个模块要看导入时添加的 key 是否一样
 相对导入 from . import module 会加入 package 和 package.module 到 sys.modules 中（从顶层 package 开始），但如果是 import module 添加的则是 module，此时 module 和 sys.modules 在 sys.modules 中的 key 不一样，所以会加载两次，它们之间的修改互相都不可见
 
 ### sys.path
@@ -80,9 +85,29 @@ print(sys.path)
 
 sys.modules 是一个字典，用于存储已经被导入的模块信息，键是模块的名称（以字符串形式表示），值是对应的已经导入的模块对象本身
 
-当使用 import 语句导入一个模块时,Python 首先会在 sys.modules 中查找是否已经存在该模块，如果已经存在,就直接返回对应的模块对象，如果不存在,会去查找并执行模块的代码进行导入，并将导入后的模块对象添加到 sys.modules 字典中
+当导入一个模块时,Python 首先会在 sys.modules 中查找是否已经存在该模块，如果已经存在,就直接返回对应的模块对象，如果不存在,会去查找并执行模块的代码进行导入，并将导入后的模块对象添加到 sys.modules 字典中
 
 在多个模块导入的同一个模块中，只要每个模块导入的 sys.modules 中的 key 相同，就是共享同一个模块，修改相互可见
+
+## 规范
+
+### 函数注释
+
+``` py
+def func(a, b):
+   """
+   this is a func to add two numbers
+   Args:
+      a(int): num1
+      b(int): num2
+   Returns:
+      int
+   Example::
+      >>> func(1, 2)
+      3
+   """
+   return a + b
+```
 
 ## 特性
 

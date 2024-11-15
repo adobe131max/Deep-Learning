@@ -4,6 +4,7 @@
 | ----------------------------- | --------------------- |
 | profile                       | 配置文件              |
 | ratio                         | 比例，比率            |
+| scalar                        | 标量                  |
 | metric                        | 指标                  |
 | mean                          | 平均数                |
 | product                       | 乘积                  |
@@ -24,3 +25,5 @@
 | screen                        | 屏幕、筛查            |
 | setup                         | 安装、设置            |
 | image resolution              | 图像分辨率            |
+| histogram                     | 直方图、柱状图        |
+| overlay                       | 覆盖                  |
