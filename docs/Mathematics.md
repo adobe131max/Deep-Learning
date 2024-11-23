@@ -18,6 +18,14 @@ $$
 \hat{y}_j = \frac{\exp(z_j)}{\sum_{k=1}^{C} \exp(z_k)}
 $$
 
+## Normal distribution
+
+若随机变量 $X$ 服从正态分布，$X \sim N(\mu, \sigma)$，$\mu$ 为均值，$\sigma$ 为标准差，$\sigma^2$ 为方差，其概率密度函数为：
+
+$$
+f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x - \mu)^{2}}{2\sigma^{2}}},-\infty<x<+\infty
+$$
+
 ## Standardization（标准化）
 
 标准化是将数据变换为均值为0、标准差为1的分布。这种方法适用于数据呈高斯分布或接近高斯分布的情况。

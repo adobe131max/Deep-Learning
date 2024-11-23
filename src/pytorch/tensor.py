@@ -45,7 +45,7 @@ def change_shape():
     view        要求在内存中连续，返回新的视图，共享底层数据
     flatten     展平
     squeeze     去除维度为1的维度
-    unsqueeze   增加维度
+    unsqueeze   增加维度, 在指定的维度的shape插入1
     permute     重新排列
     transpose   转置
     unbind      拆分
@@ -312,9 +312,9 @@ def other():
     
     
 if __name__ == '__main__':
-    attribute()
+    # attribute()
     # test_dtype()
-    # change_shape()
+    change_shape()
     # test_create()
     # base_create()
     # compute()

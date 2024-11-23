@@ -29,7 +29,7 @@ for inputs, targets in dataloader:
     scaler.update()
 
 # PyTorch 2.4 以后的版本使用：
-scaler = torch.amp.GradScaler()     # 
+scaler = torch.amp.GradScaler()
 
 for inputs, targets in dataloader:
     optimizer.zero_grad()
@@ -44,7 +44,26 @@ for inputs, targets in dataloader:
 
 ```
 
-## 多机多卡
+***注意：使用混合精度时 loss 计算也必须使用混合精度***
+
+## 分布式
+
+### DataParallel
+
+只能单机多卡，效率比较低
+
+### DistributedDataParallel
+
+支持多机多卡
+
+通过环境变量设置使用的 cuda 设备：`export CUDA_VISIBLE_DEVICES=0,1`
+使用 `torchrun --nproc-per-node=2 train.py` 启动
+
+- world_size  全局进程数(每个进程对应一个GPU)
+- rank        全局进程标识 0 ~ world_size-1
+- local_rank  当前节点进程标识
+
+多卡训练保存的模型每个结构的名称前多了一个 module，应该保存 model.module.state_dict()
 
 ## TODO
 

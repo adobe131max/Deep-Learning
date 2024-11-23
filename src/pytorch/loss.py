@@ -22,6 +22,7 @@ print((loss0 + loss1 + loss2) / 3)
 
 # 多分类
 # 定义 loss 为 Cross Entropy Loss
+# 等价于 F.cross_entropy()
 criterion = nn.CrossEntropyLoss()                  
 
 # 预测概率（这里并不需要进行softmax，CrossEntropyLoss中已经包含了softmax）
