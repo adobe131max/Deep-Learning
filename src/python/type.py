@@ -30,6 +30,12 @@ def test_dict():
 
     for key in info:
         print(key)
+    
+    for key in info.keys():
+        print(key)
+    
+    for value in info.values():
+        print(value)
         
     for key, value in info.items():
         print(key, value)
@@ -37,12 +43,14 @@ def test_dict():
     # 字典推导式
     numbers = [1, 2, 3, 4, 5]
     squares = {n: n**2 for n in numbers}
-    
+
+# TODO: defaultdict
 
 def test_set():
     pass
         
 
 if __name__ == '__main__':
-    test_list()
+    # test_list()
     # test_tuple()
+    test_dict()

@@ -49,12 +49,12 @@ def criterion(predicts, targets):
     pass
 
 
-def train_one_epoch(model, optimizer, lr_scheduler, dataloader, local_rank, scaler=None):
+def train_one_epoch(model, optimizer, lr_scheduler, dataloader, scaler=None):
     model.train()
     
     epoch_loss = 0.0
     
-    for inputs, targets in tqdm(dataloader, ncols=50, position=local_rank):
+    for inputs, targets in tqdm(dataloader, ncols=50, position=dist.get_rank()):
         inputs = inputs.cuda()
         targets = targets.cuda()
         
@@ -79,35 +79,37 @@ def train_one_epoch(model, optimizer, lr_scheduler, dataloader, local_rank, scal
     
     lr_scheduler.step()
     
-    epoch_loss /= len(dataloader)
+    epoch_loss /= len(dataloader)   # 单卡上的迭代的次数
 
     return epoch_loss, lr
 
 
 @torch.no_grad()
-def evaluate(model, dataloader, local_rank):
+def evaluate(model, dataloader):
     model.eval()
     
     epoch_loss = 0.0
     
-    for inputs, targets in tqdm(dataloader, ncols=50, position=local_rank):
+    for inputs, targets in tqdm(dataloader, ncols=50, position=dist.get_rank()):
         inputs = inputs.cuda()
         targets = targets.cuda()
         
         outputs = model(inputs)
         loss = criterion(outputs, targets)
         
+        dist.all_reduce(loss, dist.ReduceOp.AVG)
+        
         epoch_loss += loss.item()
         
     epoch_loss /= len(dataloader)
-        
+    
     return epoch_loss
 
 
 def train():
-    rank       = int(os.environ['RANK'])
+    rank       = int(os.environ['RANK'])        # dist.get_ranl()
     local_rank = int(os.environ['LOCAL_RANK'])
-    world_size = int(os.environ['WORLD_SIZE'])
+    world_size = int(os.environ['WORLD_SIZE'])  # dist.get_world_size()
     
     setup(rank, local_rank, world_size)
     dist.barrier()
@@ -167,7 +169,7 @@ def train():
     for epoch in range(1, epochs + 1):
         dist.barrier()
         train_sampler.set_epoch(epoch)
-        train_loss, lr = train_one_epoch(model, optimizer, lr_scheduler, train_dataloader, local_rank, scaler)
+        train_loss, lr = train_one_epoch(model, optimizer, lr_scheduler, train_dataloader, scaler)
         
         dist.barrier()
         if rank == 0:

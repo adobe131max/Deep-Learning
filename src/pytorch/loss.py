@@ -23,7 +23,7 @@ print((loss0 + loss1 + loss2) / 3)
 # 多分类
 # 定义 loss 为 Cross Entropy Loss
 # 等价于 F.cross_entropy()
-criterion = nn.CrossEntropyLoss()                  
+criterion = nn.CrossEntropyLoss()
 
 # 预测概率（这里并不需要进行softmax，CrossEntropyLoss中已经包含了softmax）
 predict = torch.tensor([[1.0, 9.0, 21.0], [3.0, 13.0, 7.0]])    # 注意类型是float
