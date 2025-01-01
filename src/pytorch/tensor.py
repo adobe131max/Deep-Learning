@@ -15,6 +15,7 @@ def attribute():
     print(x.device)
     print(x.requires_grad)
 
+
 def test_dtype():
     '''
     torch.Tensor中的dtype元素类型
@@ -37,6 +38,7 @@ def test_dtype():
     print(x)
     a = x.item()    # 对于单个数值的张量，返回一个标准的 Python 数值类型
     print(a)
+
 
 def change_shape():
     '''
@@ -83,12 +85,16 @@ def change_shape():
     z = x.transpose(0, 1)       # 和 permute 一样，但一次只能操作两个维度
     print(z)
     print(z.is_contiguous())
+    z = x.t()
+    print(z)
+    print(z.is_contiguous())
     
     print('\n--- unbind ---\n')
     bboxs = torch.tensor([[1, 2, 3, 4], [5, 6, 7, 8]])
     xmin, ymin, xmax, ymax = bboxs.unbind(1)
     print(xmin)
     print(torch.stack((xmin, ymin, xmax, ymax), dim=1))
+
 
 def test_create():
     '''
@@ -185,6 +191,38 @@ def compute():
     z = x * y
     print(z)
     
+    print('\n<--- * --->\n')
+    # same shape or broadcast
+    x = torch.tensor([[1, 2],
+                      [3, 4]])
+    z = x * x
+    print(z)
+    y = torch.tensor([1, 2])
+    z = x * y
+    print(z)
+    y = torch.tensor([[1], [2]])
+    z = x * y
+    print(z)
+    
+    print('\n<--- matrix multiplication --->\n')
+    # torch.mm 仅支持二维张量
+    x = torch.tensor([[1, 2, 3],
+                      [4, 5, 6]])
+    y = torch.tensor([[1, 2],
+                      [3, 4],
+                      [5, 6]])
+    z = torch.mm(x, y)  # 
+    print(z)
+    # torch.matmul 支持任意维张量 简写为 @
+    # 批量矩阵乘法
+    x = torch.randn(8, 2, 3)
+    y = torch.randn(8, 3, 2)
+    z = torch.matmul(x, y)
+    print(z.shape)
+    z = x @ y
+    print(z.shape)
+
+    
 def process():
     '''
     torch.max                       返回两个tensor: 最大值和索引
@@ -236,7 +274,7 @@ def process():
     y = torch.ones(3, 2)
     print(x)
     print(torch.where(x > 0, x, y))
-    
+
 
 def tensors():
     '''
@@ -314,10 +352,10 @@ def other():
 if __name__ == '__main__':
     # attribute()
     # test_dtype()
-    change_shape()
+    # change_shape()
     # test_create()
     # base_create()
-    # compute()
+    compute()
     # process()
     # tensors()
     # broadcast()

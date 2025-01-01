@@ -44,13 +44,22 @@ def test_dict():
     numbers = [1, 2, 3, 4, 5]
     squares = {n: n**2 for n in numbers}
 
+
 # TODO: defaultdict
 
+
 def test_set():
-    pass
-        
+    li = [1, 2, 3]
+    my_set = {x for x in li}
+    print(type(my_set))
+    
+    s = set(li)
+    print(type(s))
+    print(len(s))
+
 
 if __name__ == '__main__':
     # test_list()
     # test_tuple()
-    test_dict()
+    # test_dict()
+    test_set()

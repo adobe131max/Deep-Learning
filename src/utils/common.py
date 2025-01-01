@@ -1,6 +1,7 @@
 def round_floats(obj, n=4):
     """
     将要保存为 json 的数据中的所有小数只保留 n 位小数
+    
     Args:
         n: 要保存的有效位数
     Example:

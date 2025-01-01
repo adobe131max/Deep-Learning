@@ -4,9 +4,11 @@
 | ----------------------------- | --------------------- |
 | profile                       | 配置文件              |
 | ratio                         | 比例，比率            |
+| coefficient                   | 系数                  |
 | scalar                        | 标量                  |
 | metric                        | 指标                  |
 | mean                          | 平均数                |
+| error                         | 误差                  |
 | product                       | 乘积                  |
 | variance                      | 方差                  |
 | normal distribution           | 正态分布              |
