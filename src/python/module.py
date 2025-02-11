@@ -31,7 +31,7 @@ import a.b.c 会添加 a、a.b、a.b.c
 from a.b import c 也会添加 a、a.b、a.b.c, 当然 c 得是模块而不是变量、函数...
 """
 
-# # add src、src.python、src.python.type to sys.modules
+# add src、src.python、src.python.type to sys.modules
 import src.python.type  # from src.python import type
 
 print(len(sys.modules))

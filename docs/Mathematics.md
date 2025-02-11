@@ -58,6 +58,12 @@ $$
 - $x_{\text{max}}$ 是数据的最大值
 - $x'$ 是归一化后的数据
 
+## cosine similarity（余弦相似度）
+
+$$
+Similarity(A, B) = \frac{A \cdot B}{\left | A \right | \times \left | B \right |}
+$$
+
 ## Loss
 
 常见损失函数

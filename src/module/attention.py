@@ -1,6 +1,48 @@
 import torch
+import torch.nn as nn
 
 # https://www.bilibili.com/video/BV15v411W78M
+
+class Attention(nn.Module):
+    def __init__(self, dim, heads=8):
+        super().__init__()
+        assert dim % heads == 0, 'dim % heads must == 0'
+        self.dim = dim
+        self.heads = heads
+        head_dim = dim // heads
+        self.scale = head_dim ** -0.5
+        
+        self.qkv = nn.Linear(dim, dim * 3, bias=False)
+        self.o   = nn.Linear(dim, dim)
+    
+    def forward(self, x: torch.Tensor):
+        # token_num, batch_size, token_dim
+        N, B, D = x.shape
+        assert D == self.dim, f'input token dim must equal {self.dim}'
+        # [N, B, 3*D]
+        qkv = self.qkv(x)
+        # [N, B, 3, heads, dim_per_head]
+        qkv = qkv.reshape(N, B, 3, self.heads, -1)
+        # [3, B, heads, N, dim_per_head]
+        qkv = qkv.permute(2, 1, 3, 0, 4)
+        # [B, heads, N, dim_per_head]
+        q, k, v = qkv
+        # [B, heads, N, N]
+        attn = q @ k.transpose(-2, -1)
+        # scale weight
+        attn *= self.scale
+        # softmax line
+        attn = attn.softmax(dim=-1)
+        # [B, heads, N, dim_per_head]
+        x = attn @ v
+        # [B, N, heads, dim_per_head]
+        x = x.transpose(1, 2)
+        # [B, N, D]
+        x = x.reshape(B, N, -1)
+        # [B, N, D]
+        x = self.o(x)
+        return x
+
 
 def self_attention():
     # (x1, x2, ..., xn)
@@ -41,8 +83,8 @@ def self_attention():
     print(attentions.shape)
     b = torch.mm(attentions, V)
     print(b.shape)
-    
-    
+
+
 def multi_head_self_attention():
     head = 8
     n = 100
@@ -95,4 +137,8 @@ if __name__ == '__main__':
     """
     self attention 不会改变 shape
     """
-    multi_head_self_attention()
+    # multi_head_self_attention()
+    
+    attention = Attention(512, 8)
+    x = torch.randn(100, 4, 512)
+    x = attention(x)

@@ -6,8 +6,6 @@
 
 先看基础理论 → 再看经典论文 → 上手PyTorch
 
-前期不要浪费时间在写代码复现老模型上，没有任何意义，学习其中的思想就行
-
 **学习资料：**
 
 1. 理论基础：[李宏毅深度学习](https://www.bilibili.com/video/BV1J94y1f7u5)
@@ -21,8 +19,9 @@
 ``` plain
 Deep-Learning/
 │
-├── code/               # 代码
+├── src/                # 代码
 │   ├── model/          # 模型示例代码
+│   ├── module/         # 模块结构示例代码
 │   ├── python/         # python基础
 │   ├── pytorch/        # pytorch基础
 │   ├── test/           # 测试

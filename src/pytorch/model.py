@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from collections import OrderedDict
 from torchvision.models import resnet50
 
 
@@ -90,7 +91,39 @@ class Model2(nn.Module):
         
     def forward(self, x):
         return self.layers(x)
+
     
+def show_structure(model: nn.Module):
+    for name, module in model.named_children():
+        print(name)
+        
+
+def children_strucure_name():
+    # ModuleList 和 Sequential 都是以数字作为 name
+    model1 = Model1()
+    show_structure(model1)
+    show_structure(model1.layers)
+    print(type(model1.layers))
+    
+    model2 = Model2()
+    show_structure(model2)
+    show_structure(model2.layers)
+    print(type(model2.layers))
+    # 只能使用 index 访问
+    print(type(model2.layers[0]))
+    
+    model3 = nn.Sequential(OrderedDict([
+        ("fc", nn.Linear(512, 2048)),
+        ("act", nn.Tanh())
+    ]))
+    
+    show_structure(model3)
+    # 可以使用 index 访问
+    print(type(model3[0]))
+    # 也可以通过名称访问模块
+    print(type(model3.fc))
+
 
 if __name__ == '__main__':
-    model_structure()
+    # model_structure()
+    children_strucure_name()

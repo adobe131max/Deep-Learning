@@ -1,3 +1,10 @@
+
+def type_hint():
+    a: 'dict[str, int]' = {}
+    b: list = []
+    c: list[list] = []
+    
+
 def test_list():
     l1 = [1, 2, 3]
     l2 = [4, 5, 6]
